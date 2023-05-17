@@ -1,0 +1,35 @@
+publicURL: https://hamaeljitsi.westeurope.cloudapp.azure.com
+
+#websockets:
+#  ## Colibri (JVB signalling):
+#  colibri:
+#    enabled: true
+#  ## XMPP (Prosody signalling):
+#  xmpp:
+#    enabled: true
+
+web:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    annotations:
+      # nginx.ingress.kubernetes.io/rewrite-target: /$2
+      # nginx.ingress.kubernetes.io/use-regex: "true"
+      cert-manager.io/cluster-issuer: letsencrypt
+    hosts:
+    - host: hamaeljitsi.westeurope.cloudapp.azure.com
+      paths: ['/']
+    tls:
+    - hosts: 
+      - hamaeljitsi.westeurope.cloudapp.azure.com
+      secretName: tls-secret
+
+#jvb:
+# service:
+#   type: LoadBalancer
+# publicIPs:
+#   - 20.103.173.181
+
+jvb:
+  replicaCount: 1
+  useHostPort: true
