@@ -88,5 +88,5 @@ kubectl get certificate --namespace ingress-basic
 
 ### Install jitsi
 helm repo add jitsi https://jitsi-contrib.github.io/jitsi-helm/
-helm install -f jitsi-values.yaml myjitsi jitsi/jitsi-meet
+helm install -f jitsi-values.yaml myjitsi jitsi/jitsi-meet --namespace $NAMESPACE
 
